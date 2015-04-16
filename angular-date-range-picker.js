@@ -5,12 +5,57 @@
     "$compile", "$timeout",
     function($compile, $timeout) {
       var CUSTOM, pickerTemplate;
-      pickerTemplate = "<div ng-show=\"visible\" class=\"angular-date-range-picker__picker\" ng-click=\"handlePickerClick($event)\" ng-class=\"{'angular-date-range-picker--ranged': showRanged }\">\n  <div class=\"angular-date-range-picker__timesheet\">\n    <a ng-click=\"move(-1, $event)\" class=\"angular-date-range-picker__prev-month fa fa-arrow-left\"></a>\n    <div ng-repeat=\"month in months\" class=\"angular-date-range-picker__month\">\n      <div class=\"angular-date-range-picker__month-name\">{{::month.name}}</div>\n      <table class=\"angular-date-range-picker__calendar\">\n        <tr>\n          <th ng-repeat=\"day in month.weeks[1]\" class=\"angular-date-range-picker__calendar-weekday\" bo-text=\"day.date.format('dd')\">\n          </th>\n        </tr>\n        <tr ng-repeat=\"week in month.weeks\">\n          <td\n              ng-class='{\n                \"angular-date-range-picker__calendar-day\": day,\n                \"angular-date-range-picker__calendar-day-selected\": day.selected,\n                \"angular-date-range-picker__calendar-day-disabled\": day.disabled,\n                \"angular-date-range-picker__calendar-day-start\": day.start\n              }'\n              ng-repeat=\"day in week track by $index\" ng-click=\"select(day, $event)\">\n              <div class=\"angular-date-range-picker__calendar-day-wrapper\">{{::day.date.date()}}</div>\n          </td>\n        </tr>\n      </table>\n    </div>\n    <a ng-click=\"move(+1, $event)\" class=\"angular-date-range-picker__next-month fa fa-arrow-right\"></a>\n  </div>\n  <div class=\"angular-date-range-picker__panel\">\n    <div ng-show=\"showRanged\">\n<div>\n <li ng-repeat=\"e in quickList\" ng-click=\"prevent_select(e.range)\">{{e.label}}</li>     <a ng-click=\"hide($event)\" class=\"btn btn-default btn-sm\">cancel</a> <a ng-click=\"ok($event)\" class=\"btn btn-primary btn-sm angular-date-range-picker__apply\">Apply</a></div></div>  </div>\n</div>";
+      pickerTemplate = function(){/*
+<div ng-show="visible" class="angular-date-range-picker__picker" ng-click="handlePickerClick($event)" ng-class="{'angular-date-range-picker--ranged': showRanged }">
+    <div class="angular-date-range-picker__timesheet">
+        <a ng-click="move(-1, $event)" class="angular-date-range-picker__prev-month fa fa-arrow-left"></a>
+        <div ng-repeat="month in months" class="angular-date-range-picker__month">
+            <div class="angular-date-range-picker__month-name">{{::month.name}}</div>
+            <table class="angular-date-range-picker__calendar">
+                <tr>
+                    <th ng-repeat="day in month.weeks[1] track by $index" class="angular-date-range-picker__calendar-weekday" ng-bind="::day.date.format('dd')">
+                    </th>
+                </tr>
+                <tr ng-repeat="week in month.weeks">
+                    <td ng-class='{
+                "angular-date-range-picker__calendar-day": day,
+                "angular-date-range-picker__calendar-day-selected": day.selected,
+                "angular-date-range-picker__calendar-day-disabled": day.disabled,
+                "angular-date-range-picker__calendar-day-start": day.start
+              }' ng-repeat="day in week track by $index" ng-click="select(day, $event)">
+                        <div class="angular-date-range-picker__calendar-day-wrapper">{{::day.date.date()}}</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <a ng-click="move(+1, $event)" class="angular-date-range-picker__next-month fa fa-arrow-right"></a>
+    </div>
+    <div class="angular-date-range-picker__panel">
+        <div ng-show="showRanged">
+            <div>
+                <li ng-repeat="e in quickList" ng-click="prevent_select(e.range)">{{e.label}}</li>
+                <a ng-click="hide($event)" class="btn btn-default btn-sm">cancel</a>
+                <a ng-click="ok($event)" class="btn btn-primary btn-sm angular-date-range-picker__apply">Apply</a></div>
+        </div>
+    </div>
+</div>
+    */}.toString().slice(14,-3);
       CUSTOM = "CUSTOM";
       return {
         restrict: "AE",
         replace: true,
-        template: "<span tabindex=\"0\" ng-keydown=\"hide()\" class=\"btn btn-default btn-sm angular-date-range-picker__input\">\n  <span ng-if=\"showRanged\">\n    <span ng-show=\"!!model\">{{ model.start.format(\"ll\") }} - {{ model.end.format(\"ll\") }}</span>\n    <span ng-hide=\"!!model\">Select date range</span>\n  </span>\n  <span ng-if=\"!showRanged\">\n    <span ng-show=\"!!model\">{{ model.format(\"ll\") }}</span>\n    <span ng-hide=\"!!model\">Select date</span>\n  </span>\n</span>",
+        template: function(){/*
+    <span tabindex="0" ng-keydown="hide()" class="btn btn-default btn-sm angular-date-range-picker__input">
+      <span ng-if="showRanged">
+        <span ng-show="!!model">{{ model.start.format("ll") }} - {{ model.end.format("ll") }}</span>
+        <span ng-hide="!!model">Select date range</span>
+      </span>
+      <span ng-if="!showRanged">
+        <span ng-show="!!model">{{ model.format("ll") }}</span>
+        <span ng-hide="!!model">Select date</span>
+      </span>
+    </span>
+        */}.toString().slice(14,-3),
         scope: {
           model: "=ngModel",
           customSelectOptions: "=",
