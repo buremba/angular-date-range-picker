@@ -3,11 +3,10 @@
 <head>
   <title>Test</title>
   <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
-  <script type="text/javascript" src="../bower_components/angular-bindonce/bindonce.js"></script>
   <script type="text/javascript" src="../bower_components/moment/moment.js"></script>
   <script type="text/javascript" src="../bower_components/moment-range/lib/moment-range.js"></script>
   <script type="text/javascript" src="../angular-date-range-picker.js"></script>
-  <script type="text/javascript">
+  <script type="text/javascript">c
     angular.module("testapp", ["dateRangePicker"])
     angular.module("testapp").controller("TestCtrl", function($scope){
       $scope.range = moment().range("2012-11-05", "2013-01-25")
@@ -23,7 +22,7 @@
       $scope.date = null
     })
   </script>
-  <link rel="stylesheet" type="text/css" href="../build/angular-date-range-picker.css"/>
+  <link rel="stylesheet" type="text/css" href="../angular-date-range-picker.css"/>
   <style type="text/css">
     * {
       font-size: 10px;
